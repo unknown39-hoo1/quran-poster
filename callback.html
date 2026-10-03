@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quran Poster — Authorization callback</title>
+</head>
+<body style="font-family:sans-serif;max-width:640px;margin:40px auto;padding:0 16px;line-height:1.6">
+<h1>Authorization received</h1>
+<p id="msg">Copy the full URL from your browser's address bar and send it to Jad.</p>
+<pre id="code" style="background:#f4f4f4;padding:12px;word-break:break-all;white-space:pre-wrap"></pre>
+<script>
+const q = new URLSearchParams(location.search);
+const code = q.get('code');
+const err = q.get('error');
+const box = document.getElementById('code');
+if (code) {
+  document.getElementById('msg').textContent = 'Your authorization code (send the full page URL to Jad):';
+  box.textContent = code;
+} else if (err) {
+  document.getElementById('msg').textContent = 'Authorization failed: ' + err;
+} else {
+  box.textContent = location.href;
+}
+</script>
+</body>
+</html>
